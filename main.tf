@@ -81,7 +81,7 @@ resource "aws_instance" "ami_base" {
 		echo "\"PrivateIp\" : \"${aws_instance.ami_base.private_ip}\", " >> info.json
 		echo "\"InstanceId\": ${aws_instance.ami_base.id}\"" >> info.json
 		echo " }" >> info.json
-		echo ${aws_instance.ami_base.id} >> instanceId.txt
+		echo ${aws_instance.ami_base.id} > instanceId.txt
 		echo "${aws_instance.ami_base.public_ip}" > ipaddress.txt
 		echo "Done"
 	EOT
