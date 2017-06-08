@@ -76,9 +76,11 @@ resource "aws_instance" "ami_base" {
     command = <<EOT
 		echo $USER
 		echo $USER > user.txt
-		echo "PublicIp: ${aws_instance.ami_base.public_ip}" > info.txt
-		echo "PrivateIp: ${aws_instance.ami_base.public_ip}" >> info.txt
-		echo "InstanceId: ${aws_instance.ami_base.id}" >> info.txt
+		echo "{" > info.json
+		echo "\"PublicIp\" : \"${aws_instance.ami_base.public_ip}\", " >> info.json
+		echo "\"PrivateIp\" : \"${aws_instance.ami_base.private_ip}\", " >> info.json
+		echo "\"InstanceId\": ${aws_instance.ami_base.id}\"" >> info.json
+		echo " }" >> info.json
 		echo ${aws_instance.ami_base.id} >> instanceId.txt
 		echo "${aws_instance.ami_base.public_ip}" > ipaddress.txt
 		echo "Done"
