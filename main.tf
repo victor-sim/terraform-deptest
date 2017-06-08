@@ -65,8 +65,8 @@ resource "aws_instance" "ami_base" {
 		}
 
 		inline = [
-			"sudo rm -rf /var/www/html"
-			"sudo git clone ${var.repo_url} /var/www/html/"
+			"sudo rm -rf /var/www/html",
+			"sudo git clone ${var.repo_url} /var/www/html/",
 		  "sudo service httpd start",
 		  "sudo chkconfig httpd on",
 		]
