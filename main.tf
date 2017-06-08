@@ -47,7 +47,7 @@ resource "aws_instance" "ami_base" {
   key_name = "${var.key_name}"
   security_groups = ["terraform_w3"]
   tags {
-    Name = "TF_Linux"
+    Name = "TF_Deploy"
   }
   
   user_data = <<HEREDOC
@@ -80,6 +80,7 @@ resource "aws_instance" "ami_base" {
 		echo "PrivateIp: ${aws_instance.ami_base.public_ip}" >> info.txt
 		echo "InstanceId: ${aws_instance.ami_base.id}" >> info.txt
 		echo ${aws_instance.ami_base.id} >> instanceId.txt
+		echo "${aws_instance.ami_base.public_ip}" > ipaddress.txt
 		echo "Done"
 	EOT
   }
